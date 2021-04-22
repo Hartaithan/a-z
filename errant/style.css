@@ -1,0 +1,119 @@
+@-webkit-keyframes cursor-blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@-moz-keyframes cursor-blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes cursor-blink {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+body {
+	background-color: black;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.four-oh-four {
+	position: relative;
+	top: 0;
+	left: 0;
+	min-height: 100vh;
+	min-width: 100vw;
+	z-index: 2;
+	background-color: black;
+	transition: opacity 300ms ease-out;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.four-oh-four .dJAX_internal {
+	opacity: 0;
+}
+.four-oh-four form,
+.four-oh-four input {
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	background-color: black;
+}
+
+.terminal {
+	position: relative;
+	padding: 2rem;
+}
+.terminal .prompt {
+	color: white;
+	display: block;
+	font-family: "AndaleMono", monospace;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 0.9em;
+	letter-spacing: 0.15em;
+	white-space: pre-wrap;
+	text-shadow: 0 0 2px rgb(255, 255, 255);
+	line-height: 1;
+	margin-bottom: 0.75em;
+}
+.terminal .prompt:before {
+	content: "> ";
+	display: inline-block;
+}
+.terminal .new-output {
+	display: inline-block;
+}
+.terminal .new-output:after {
+	display: inline-block;
+	vertical-align: -0.15em;
+	width: 0.75em;
+	height: 1em;
+	margin-left: 5px;
+	background: white;
+	box-shadow: 1px 1px 1px rgb(255, 255, 255), -1px -1px 1px rgb(255, 255, 255),
+		1px -1px 1px rgba(255, 255, 255), -1px 1px 1px rgba(255, 255, 255);
+	-webkit-animation: cursor-blink 1.25s steps(1) infinite;
+	-moz-animation: cursor-blink 1.25s steps(1) infinite;
+	animation: cursor-blink 1.25s steps(1) infinite;
+	content: "";
+}
+
+.answer p {
+	letter-spacing: 0;
+	opacity: 0;
+	line-height: 1rem;
+}
+
+.four-oh-four-form {
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+}

@@ -1,0 +1,38 @@
+body {
+  font-family: Inter;
+  background: black;
+  color: white;
+  align-items: center;
+  font-weight: bold;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  margin: 30px;
+  opacity: 1;
+}
+
+img:hover {
+  opacity: 0.5;
+}
+
+img {
+  -webkit-transition: opacity 0.3s, box-shadow 0.3s;
+  -moz-transition: opacity 0.3s, box-shadow 0.3s;
+  transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+button {
+  appearance: none;
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: grey;
+  border-radius: 3px;
+  width: 100px;
+  cursor: pointer;
+  font-size: 15px;
+  transition-duration: 0.25s;
+}

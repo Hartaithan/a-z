@@ -1,0 +1,49 @@
+body {
+  font-family: Inter;
+  background: black;
+  color: white;
+  align-items: center;
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  background-color: white;
+  color: black;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+th, td {
+  text-align: center;
+  padding: 10px;
+}
+
+tr:hover {
+  background: grey;
+  color: white;
+}
+
+tr {
+  -webkit-transition: background 0.3s, box-shadow 0.3s;
+  -moz-transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+th {
+  background-color: #505050;
+  color: white;
+}
+
+.lb_div {
+  position: relative;
+  z-index: 2;
+}
+
+.loader {
+  position: absolute;
+  left: 49.5%;
+  top: 140px;
+  z-index: 1;
+}
