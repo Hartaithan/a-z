@@ -1,27 +1,44 @@
-var url_ru = '1hYIk13OHVp1YpnDco1OdO4SbAF4JCnW5nktdW3EPcOI';
-var url_en = '1Lk7V7x5NK87DBXIHinaJBXM3CunytfNqJHElxnQAolk';
+var url = "1hYIk13OHVp1YpnDco1OdO4SbAF4JCnW5nktdW3EPcOI";
 
-function init() {
-	Tabletop.init({
-		key: url_ru,
-		callback: showInfo,
-		simpleSheet: true
+function renderTable(data) {
+	let html = "<tr>";
+	html = "<tr><th>№</th><th>ВРЕМЯ</th><th>НИК</th></tr>";
+	data.forEach((item, index) => {
+		html += `<tr><td>${index + 1}</td><td>${item.timestamp}</td><td>${item.ник}</td></tr>`;
 	});
+	document.getElementById("leaderboard").innerHTML = "<table>" + html + "</table>";
 }
 
-function showInfo(data) {
-	var html = "<tr>";
+let n = 0;
 
-	html += "<tr><th>№</th><th>ВРЕМЯ</th><th>НИК</th></tr>";
-	for (i = 0; i < data.length; i++) {
-		html += "<td>" + (i+1) + "</td>";
-		for (prop in data[i]) {
-			html += "<td>" + data[i][prop] + "</td>";
-		}
-		html += "</tr><tr>";
+function getData() {
+	if (n > 5) {
+		n = 0;
+		document.getElementById("leaderboard").innerHTML = "<div class='error'>Не удалось получить данные с таблицы.</br>Попробуйте позже</div>";
 	}
-	document.getElementById("leaderboard").innerHTML = html;
-
+	fetch(`https://spreadsheets.google.com/feeds/list/${url}/1/public/values?alt=json`)
+		.then((res) => res.json())
+		.then((json) => {
+			if (!json.feed.entry) {
+				return (document.getElementById("leaderboard").innerHTML = "<div class='empty'>Таблица лидеров пуста.</br>Ты можешь стать первым!</div>");
+			}
+			const data = [];
+			const rows = json.feed.entry;
+			for (const row of rows) {
+				const formattedRow = {};
+				for (const key in row) {
+					if (key.startsWith("gsx$")) {
+						formattedRow[key.replace("gsx$", "")] = row[key].$t;
+					}
+				}
+				data.push(formattedRow);
+			}
+			renderTable(data);
+		})
+		.catch(() => {
+			n = n + 1;
+			getData();
+		});
 }
 
-init();
+getData();

@@ -1,27 +1,44 @@
-var url_ru = '1hYIk13OHVp1YpnDco1OdO4SbAF4JCnW5nktdW3EPcOI';
-var url_en = '1Lk7V7x5NK87DBXIHinaJBXM3CunytfNqJHElxnQAolk';
+var url = "1Lk7V7x5NK87DBXIHinaJBXM3CunytfNqJHElxnQAolk";
 
-function init() {
-	Tabletop.init({
-		key: url_en,
-		callback: showInfo,
-		simpleSheet: true
+function renderTable(data) {
+	let html = "<tr>";
+	html = "<tr><th>№</th><th>TIMESTAMP</th><th>NICKNAME</th></tr>";
+	data.forEach((item, index) => {
+		html += `<tr><td>${index + 1}</td><td>${item.timestamp}</td><td>${item.nickname}</td></tr>`;
 	});
+	document.getElementById("leaderboard").innerHTML = "<table>" + html + "</table>";
 }
 
-function showInfo(data) {
-	var html = "<tr>";
+let n = 0;
 
-	html += "<tr><th>№</th><th>TIMESTAMP</th><th>NICKNAME</th></tr>";
-	for (i = 0; i < data.length; i++) {
-		html += "<td>" + (i+1) + "</td>";
-		for (prop in data[i]) {
-			html += "<td>" + data[i][prop] + "</td>";
-		}
-		html += "</tr><tr>";
+function getData() {
+	if (n > 5) {
+		n = 0;
+		document.getElementById("leaderboard").innerHTML = "<div class='error'>Failed to retrieve data from the table.</br>Try again later</div>";
 	}
-	document.getElementById("leaderboard").innerHTML = html;
-
+	fetch(`https://spreadsheets.google.com/feeds/list/${url}/1/public/values?alt=json`)
+		.then((res) => res.json())
+		.then((json) => {
+			if (!json.feed.entry) {
+				return (document.getElementById("leaderboard").innerHTML = "<div class='empty'>The leaderboard is empty.</br>You can be the first!</div>");
+			}
+			const data = [];
+			const rows = json.feed.entry;
+			for (const row of rows) {
+				const formattedRow = {};
+				for (const key in row) {
+					if (key.startsWith("gsx$")) {
+						formattedRow[key.replace("gsx$", "")] = row[key].$t;
+					}
+				}
+				data.push(formattedRow);
+			}
+			renderTable(data);
+		})
+		.catch(() => {
+			n = n + 1;
+			getData();
+		});
 }
 
-init();
+getData();
