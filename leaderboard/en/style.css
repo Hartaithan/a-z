@@ -7,18 +7,21 @@ body {
 }
 
 table {
-	border-collapse: collapse;
-	background-color: white;
-	color: black;
 	overflow: hidden;
+	border-collapse: collapse;
 	border-radius: 10px;
-	margin: 5px;
+	border-style: hidden;
 }
 
 th,
 td {
 	text-align: center;
 	padding: 10px;
+}
+
+tr:not(:first-child) {
+	background-color: white;
+	color: black;
 }
 
 tr:hover {
