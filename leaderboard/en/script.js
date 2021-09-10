@@ -16,7 +16,7 @@ function getData() {
 		n = 0;
 		document.getElementById("leaderboard").innerHTML = "<div class='error'>Failed to retrieve data from the table.</br>Try again later</div>";
 	}
-	fetch(`https://spreadsheets.google.com/feeds/list/${url}/1/public/values?alt=json`)
+	fetch(`https://docs.google.com/spreadsheets/d/${url}/gviz/tq?tqx=out:json&tq&gid=0`)
 		.then((res) => res.json())
 		.then((json) => {
 			if (!json.feed.entry) {
