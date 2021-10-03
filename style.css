@@ -17,10 +17,10 @@ body {
 	overflow: hidden;
 	color: white;
 	opacity: 0;
-	-webkit-transition: background-color 700ms ease-in-out;
-	-moz-transition: background-color 700ms ease-in-out;
-	-o-transition: background-color 700ms ease-in-out;
-	transition: background-color 700ms ease-in-out;
+	-webkit-transition: all 700ms ease-in-out;
+	-moz-transition: all 700ms ease-in-out;
+	-o-transition: all 700ms ease-in-out;
+	transition: all 700ms ease-in-out;
 }
 
 button > i {
