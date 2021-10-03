@@ -1,6 +1,10 @@
 new fullpage("#fullpage", {
 	autoScrolling: true,
 	navigation: true,
+	lazyLoading: true,
+	afterLoad: function () {
+		document.body.style.opacity = "1";
+	},
 });
 
 function toggleDropdown() {
