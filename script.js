@@ -3,7 +3,7 @@ new fullpage("#fullpage", {
 	navigation: true,
 });
 
-function myFunction() {
+function toggleDropdown() {
 	document.getElementById("myDropdown").classList.toggle("show");
 }
 
