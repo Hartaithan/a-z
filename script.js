@@ -11,6 +11,11 @@ function toggleDropdown() {
 	document.getElementById("myDropdown").classList.toggle("show");
 }
 
+var tag = document.createElement("script");
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 window.onclick = function (event) {
 	if (!event.target.matches(".dropbtn")) {
 		var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -22,4 +27,30 @@ window.onclick = function (event) {
 			}
 		}
 	}
+};
+
+var player;
+window.onYouTubeIframeAPIReady = function () {
+  player = new YT.Player("player", {
+    height: "390",
+    width: "640",
+    videoId: "rrW-KSLWzcw",
+    playerVars: {
+      autoplay: 0,
+      loop: 1,
+      mute: 1
+    }
+  });
+};
+
+function playVideo() {
+  if (player) {
+    player.playVideo();
+  }
+}
+
+var overlay = document.getElementById("overlay");
+overlay.onclick = function () {
+	overlay.style.setProperty('display', 'none');
+  playVideo();
 };
