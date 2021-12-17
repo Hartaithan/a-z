@@ -30,11 +30,12 @@ window.onclick = function (event) {
 };
 
 var player;
+var videoId = window.location.pathname.split('/').includes("en") ? "rrW-KSLWzcw" : "zylWwQMFINo"
 window.onYouTubeIframeAPIReady = function () {
   player = new YT.Player("player", {
     height: "390",
     width: "640",
-    videoId: "rrW-KSLWzcw",
+    videoId,
     playerVars: {
       autoplay: 0,
       loop: 1,
