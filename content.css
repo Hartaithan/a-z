@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  color: white;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: black;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content > p {
+  font-family: monospace;
+  white-space: pre-line;
+  line-height: 160%;
+}
+
+@media screen and (max-width: 700px) {
+  .content > p {
+    font-size: 9px;
+  }
+  .content > svg {
+    width: 300px;
+    height: 300px;
+  }
+}
